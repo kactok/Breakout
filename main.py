@@ -33,9 +33,6 @@ points_speed = {'yellow': {
 # All blocks
 blocks = []
 
-# number of hits
-hit = 0
-
 for value in range(4):
     # next row with different color
     move_up = value * 40
@@ -55,6 +52,10 @@ game_is_on = True
 
 # starting ball speed
 speed = .005
+
+
+# number of hits
+hit = 0
 
 while game_is_on:
     screen.update()
