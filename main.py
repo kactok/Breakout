@@ -22,7 +22,7 @@ colors = ['yellow', 'green', 'orange', 'red']
 points_speed = {'yellow': {
     "points": 1,
     "speed": 0
-            },
+},
     'green': {"points": 3,
               "speed": .0},
     'orange': {"points": 5,
@@ -33,15 +33,18 @@ points_speed = {'yellow': {
 # All blocks
 blocks = []
 
-for value in range(4):
-    # next row with different color
-    move_up = value * 40
-    for new in range(11):
-        # add next block in a row
-        next = new * 90
-        block = Blocks(next, colors[value], move_up)
-        blocks.append(block)
 
+def add_blocks():
+    for value in range(4):
+        # next row with different color
+        move_up = value * 40
+        for new in range(11):
+            # add next block in a row
+            next = new * 90
+            block = Blocks(next, colors[value], move_up)
+            blocks.append(block)
+
+add_blocks()
 # move paddle while key pressed
 screen.listen()
 screen.onkeypress(key="Left", fun=paddle.go_left)
@@ -52,7 +55,6 @@ game_is_on = True
 
 # starting ball speed
 speed = .005
-
 
 # number of hits
 hit = 0
@@ -84,5 +86,7 @@ while game_is_on:
             speed -= ball.increase_speed(hit)
     if ball.ycor() < -330:
         game_is_on = False
-
+    if not blocks:
+        ball.goto(0, 0)
+        add_blocks()
 screen.exitonclick()
